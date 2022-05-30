@@ -2,6 +2,7 @@
 import './App.css';
 import { BrowserRouter as Router } from "react-router-dom";
 import NavBar from './components/NavBar';
+import ItemListContainer from './components/ItemListContainer';
 
 function App() {
   return (
@@ -9,11 +10,13 @@ function App() {
     <div className="App">
       <Router>
         <NavBar />
+        <h2>Bienvenido a la tienda</h2>
+        <ItemListContainer greeting={'Aca va mi catalogo!!'} />
       </Router>
-      <h2>Bienvenido a la tienda</h2>
     </div>
     </>
   );
 }
 
 export default App;
+

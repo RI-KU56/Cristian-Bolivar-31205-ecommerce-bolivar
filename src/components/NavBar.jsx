@@ -1,7 +1,8 @@
 import React from 'react';
 import './styles/NavBar.css';
-import logoNav from '../components/images/logo.png';
+import logoNav from '../images/logo.png';
 import { Link } from "react-router-dom";
+import CartWidget from './CartWidget';
 
 function NavBar() {
   return (
@@ -48,6 +49,7 @@ function NavBar() {
                 </Link>
               </li>
             </ul>
+              <CartWidget items={4}/>
           </div>
         </div>
       </nav>
