@@ -9,7 +9,7 @@ function CartWidget({items}) {
     return (
     <>
     <div className="cart-widget">
-        <FontAwesomeIcon icon={faCartShopping} size="2x" className='.cart-widget'/>
+        <FontAwesomeIcon icon={faCartShopping} size="2x"/>
         <div className="qty-display">{items}</div>
     </div>
     </>

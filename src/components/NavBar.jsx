@@ -12,7 +12,7 @@ function NavBar() {
           <Link to="/">
             <img src={logoNav} width='50' alt='Logo navbar'/>
           </Link>
-          <span class="navbar-text px-4 glitch">
+          <span className="navbar-text px-4 glitch">
             Tienda PC Componentes
           </span>
           <button
