@@ -16,7 +16,7 @@ function App() {
       <Router>
         <NavBar />
         <h2>Bienvenido a la tienda</h2>
-        <ItemListContainer greeting={'Aca va mi catalogo!!'} />
+        <ItemListContainer />
         <ItemCount inicial={1} stock={10} onAdd={onAdd} />
       </Router>
     </div>

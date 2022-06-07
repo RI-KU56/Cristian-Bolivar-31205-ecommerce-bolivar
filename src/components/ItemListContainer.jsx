@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ItemList from './ItemList';
+import jsonpack from './productos.json'
 
-function ItemListContainer({ greeting }) {
+function ItemListContainer() {
+
+    const[item, setItems] = useState([]);
+    const call = new Promise((resolve,reject) => {
+        setTimeout(()=>{
+            resolve(jsonpack)
+        }, 2000)
+    })
+
+    call.then(response => {
+        setItems(response)
+    })
+
     return (
         <>
-            <h2>{greeting}</h2>
+        <ItemList items={item} />
         </>
     )
 }

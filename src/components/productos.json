@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "tipoComponente": "Memoria RAM",
+        "marca": "Aorus",
+        "descripcion": "kit 8x2 de 16GB RGB",
+        "precio": 200,
+        "imgUrl": "https://app.contabilium.com/files/explorer/16277/Productos-Servicios/concepto-5510090.jpg"
+    },
+    {
+        "id": 2,
+        "tipoComponente": "Chasis ATX",
+        "marca": "Aorus",
+        "descripcion": "AC 300W RGB",
+        "precio": 400,
+        "imgUrl": "https://http2.mlstatic.com/D_NQ_NP_634740-MCO41618366523_052020-O.jpg"
+    },
+    {
+        "id": 3,
+        "tipoComponente": "Placa madre",
+        "marca": "Aorus",
+        "descripcion": "z370 gamimg 5 wifi",
+        "precio": 800,
+        "imgUrl": "https://http2.mlstatic.com/D_NQ_NP_735363-MCO26565565457_122017-O.jpg"
+    },
+    {
+        "id": 4,
+        "tipoComponente": "Mouse",
+        "marca": "Aorus",
+        "descripcion": "M3 RGB",
+        "precio": 100,
+        "imgUrl": "https://clonesyperifericos.com/wp-content/uploads/2021/01/1-20.jpg"
+    },
+    {
+        "id": 5,
+        "tipoComponente": "Disipador",
+        "marca": "Aorus",
+        "descripcion": "ATC 700 RGB",
+        "precio": 100,
+        "imgUrl": "https://http2.mlstatic.com/D_NQ_NP_928348-MCO31114171920_062019-O.jpg"
+    },
+    {
+        "id": 6,
+        "tipoComponente": "Grafica",
+        "marca": "Aorus",
+        "descripcion": "Geforce GTX 1080ti",
+        "precio": 800,
+        "imgUrl": "https://m.media-amazon.com/images/I/71rMwSD+OcL._AC_SY450_.jpg"
+    }
+]
