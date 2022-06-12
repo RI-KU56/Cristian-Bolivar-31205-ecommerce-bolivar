@@ -6,7 +6,8 @@ function ItemList({ items }) {
     return (
         <>
         <div style={{display:'flex', flexWrap:'wrap'}}>
-            {items?.map(item => <Item key={item.id} jsonpack={item} />)}
+            {items?.map(item => 
+            <Item key={item.id} jsonpack={item} />)}
         </div>
         </>
     )

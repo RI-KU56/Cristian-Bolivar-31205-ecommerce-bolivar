@@ -2,13 +2,9 @@ import './App.css';
 import { BrowserRouter as Router } from "react-router-dom";
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
-import ItemCount from './components/ItemCount';
+import ItemDetailContainer from './components/ItemDetailContainer';
 
 function App() {
-
-  const onAdd = (count) => {
-    alert(`Agregaste ${count} productos`)
-  }
 
   return (
     <>
@@ -16,8 +12,8 @@ function App() {
       <Router>
         <NavBar />
         <h2>Bienvenido a la tienda</h2>
+        <ItemDetailContainer />
         <ItemListContainer />
-        <ItemCount inicial={1} stock={10} onAdd={onAdd} />
       </Router>
     </div>
     </>

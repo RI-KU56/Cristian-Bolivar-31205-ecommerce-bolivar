@@ -1,22 +1,8 @@
-import React, { useState } from 'react'
+import React from "react";
 
 
-function ItemCount({ inicial, stock, onAdd, producName }) {
-    
-  const [count, setCount] = useState(inicial)
-
-  const sumar = () => {
-    count < stock ? setCount(count + 1) : alert('No se pueden agregar mas productos, sin stock!!')
-  }
-
-  const restar = () => {
-    count > inicial ? setCount(count - 1) : alert('No se pueden quitar mas productos')
-  }
-  
-  const reset = () => {
-    setCount(inicial)
-  }
-
+function ItemCount({min,max,reset,onAdd,count,stock,product_name}) {
+  console.log(count);
     return (
       <>
         <div className="btn-group" role="group" aria-label="Basic example">
@@ -24,20 +10,20 @@ function ItemCount({ inicial, stock, onAdd, producName }) {
             <thead>
               <tr>
                 <th></th>
-                <th>{producName}</th>
+                <th>{product_name}</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>
-                  <button type="button" className="btn btn-outline-danger" onClick={restar}>
+                  <button type="button" className="btn btn-outline-danger" onClick={min}>
                     -
                   </button>
                 </td>
-                <td>{count}</td>
+                <td className="text-center">{count}</td>
                 <td>
-                  <button type="button" className="btn btn-outline-success" onClick={sumar}>
+                  <button type="button" className="btn btn-outline-success" onClick={max}>
                     +
                   </button>
                 </td>
@@ -45,7 +31,7 @@ function ItemCount({ inicial, stock, onAdd, producName }) {
               <tr>
                 <td> </td>
                 <td>
-                  <button type="button" className='btn-secondary' onClick={() => onAdd(count)}>
+                  <button type="button" className='btn-secondary' disabled={count === 0} onClick={() => onAdd(count)}>
                     Agregar al carrito
                   </button>
                 </td>
