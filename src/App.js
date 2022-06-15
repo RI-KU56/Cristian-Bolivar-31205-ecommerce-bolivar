@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router } from "react-router-dom";
+import {BrowserRouter,Switch,Route} from 'react-router-dom';
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
@@ -9,12 +9,23 @@ function App() {
   return (
     <>
     <div className="App">
-      <Router>
+      <BrowserRouter>
         <NavBar />
-        <h2>Bienvenido a la tienda</h2>
-        <ItemDetailContainer />
-        <ItemListContainer />
-      </Router>
+        <Switch>
+          <Route exact path="/">
+            <ItemListContainer name="Escoger Producto a Comprar" />
+          </Route>
+          <Route path="/categories/:categoryid">
+            <ItemListContainer />
+          </Route>
+          <Route path="/categories">
+            <ItemListContainer />
+          </Route>
+          <Route path="/item/:itemid">
+            <ItemDetailContainer />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
     </>
   );

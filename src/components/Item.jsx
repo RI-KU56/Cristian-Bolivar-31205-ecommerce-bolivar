@@ -1,6 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 function Item({jsonpack}) {
+
+    const itemid = jsonpack.id;
+    console.log(itemid);
 
     return (
         <>
@@ -12,9 +16,13 @@ function Item({jsonpack}) {
                         Marca: {jsonpack.marca}
                     <br />
                     </p>
-                    <a href="#/" className="btn btn-primary">
-                        Ver Detalle
-                    </a>
+                    <p className="card-text">
+                        Precio: ${jsonpack.precio}
+                    <br />
+                    </p>
+                    <Link to={`/item/${itemid}`}>
+                        <button className="btn btn-primary">Ver Detalle</button>
+                    </Link>
                 </div>
             </div>
         </>

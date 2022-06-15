@@ -1,22 +1,38 @@
-
 import React, {useState,useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import ItemDetail from './ItemDetail';
+import productos from './productos.json'
 
 
-function ItemDetailContainer() {
-  const [productos, setProductos] = useState();
+function ItemDetailContainer({ items }) {
+  const[producto, setProducto] = useState([])
+  const{itemid} = useParams()
+
   useEffect(() => {
-    setTimeout(() => {
-      fetch("https://api.mercadolibre.com/sites/MCO/search?q=aorus&limit=1#json")
-        .then((response) => response.json())
-        .then((data) => setProductos(data.results));
-    }, 2000);
-  }, []);
+    if (items) {
+      console.log("Good news item is defined");
+    } else {
+      items = productos;
+      console.log("badnews");
+    }
+
+    const call = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(items);
+      }, 2000);
+    });
+
+    call.then((response) => {
+      console.log(itemid);
+      console.log(response[itemid - 1]);
+      setProducto(response[itemid - 1]);
+    });
+
+  }, [])
 
   return (
     <div>
-      {productos && productos.map((item) => 
-      <ItemDetail key={item.id} jsonpack={item} />)}
+      <ItemDetail jsonpack={producto} />
     </div>
   );
 }

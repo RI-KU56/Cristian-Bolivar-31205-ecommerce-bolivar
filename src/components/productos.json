@@ -2,55 +2,121 @@
     {
         "id": 1,
         "tipoComponente": "Memoria RAM",
+        "categoryid": 1,
         "marca": "Aorus",
-        "descripcion": "kit 8x2 de 16GB RGB",
+        "descripcion": "kit 8x2 de 16GB RGB DDR4",
         "precio": 200,
-        "cantidad": 10,
+        "stock": 10,
         "imgUrl": "https://app.contabilium.com/files/explorer/16277/Productos-Servicios/concepto-5510090.jpg"
     },
     {
         "id": 2,
         "tipoComponente": "Chasis ATX",
+        "categoryid": 2,
         "marca": "Aorus",
         "descripcion": "AC 300W RGB",
         "precio": 400,
-        "cantidad": 5,
+        "stock": 5,
         "imgUrl": "https://http2.mlstatic.com/D_NQ_NP_634740-MCO41618366523_052020-O.jpg"
     },
     {
         "id": 3,
         "tipoComponente": "Placa madre",
+        "categoryid": 3,
         "marca": "Aorus",
         "descripcion": "z370 gamimg 5 wifi",
         "precio": 800,
-        "cantidad": 8,
+        "stock": 8,
         "imgUrl": "https://http2.mlstatic.com/D_NQ_NP_735363-MCO26565565457_122017-O.jpg"
     },
     {
         "id": 4,
         "tipoComponente": "Mouse",
+        "categoryid": 4,
         "marca": "Aorus",
         "descripcion": "M3 RGB",
         "precio": 100,
-        "cantidad": 10,
+        "stock": 10,
         "imgUrl": "https://clonesyperifericos.com/wp-content/uploads/2021/01/1-20.jpg"
     },
     {
         "id": 5,
         "tipoComponente": "Disipador",
+        "categoryid": 5,
         "marca": "Aorus",
         "descripcion": "ATC 700 RGB",
         "precio": 100,
-        "cantidad": 8,
+        "stock": 8,
         "imgUrl": "https://http2.mlstatic.com/D_NQ_NP_928348-MCO31114171920_062019-O.jpg"
     },
     {
         "id": 6,
         "tipoComponente": "Grafica",
+        "categoryid": 6,
         "marca": "Aorus",
         "descripcion": "Geforce GTX 1080ti",
         "precio": 800,
-        "cantidad": 4,
+        "stock": 4,
         "imgUrl": "https://m.media-amazon.com/images/I/71rMwSD+OcL._AC_SY450_.jpg"
+    },
+    {
+        "id": 7,
+        "tipoComponente": "Memoria RAM",
+        "categoryid": 1,
+        "marca": "G Skill",
+        "descripcion": "kit 16x2 de 16GB RGB DDR4",
+        "precio": 400,
+        "stock": 12,
+        "imgUrl": "https://m.media-amazon.com/images/I/51E-6ERfETL._AC_SS450_.jpg"
+    },
+    {
+        "id": 8,
+        "tipoComponente": "Chasis ATX",
+        "categoryid": 2,
+        "marca": "Cooler Master",
+        "descripcion": "MasterCase H500p ARGB",
+        "precio": 500,
+        "stock": 5,
+        "imgUrl": "https://clonesyperifericos.com/wp-content/uploads/2018/12/2-7-1.jpg"
+    },
+    {
+        "id": 9,
+        "tipoComponente": "Placa madre",
+        "categoryid": 3,
+        "marca": "Asus",
+        "descripcion": "Prime Z490-P",
+        "precio": 800,
+        "stock": 8,
+        "imgUrl": "https://cdn.coordiutil.com/imagen-board_asus_prime_z590p-2234143-800-600-1-75.jpg"
+    },
+    {
+        "id": 10,
+        "tipoComponente": "Mouse",
+        "categoryid": 4,
+        "marca": "Logitech",
+        "descripcion": "G502 RGB",
+        "precio": 100,
+        "stock": 10,
+        "imgUrl": "https://falabella.scene7.com/is/image/FalabellaCO/8680750_1?wid=800&hei=800&qlt=70"
+    },
+    {
+        "id": 11,
+        "tipoComponente": "Disipador",
+        "categoryid": 5,
+        "marca": "Cooler Master",
+        "descripcion": "Hyper 212 rgb black edition",
+        "precio": 100,
+        "stock": 8,
+        "imgUrl": "http://cdn.shopify.com/s/files/1/0627/2833/9687/products/Disipador-Ventilador-Cooler-Master-Hyper-212-Rgb-Black-Led-Cooler-Master-1653712894_grande.jpg?v=1653712895"
+    },
+    {
+        "id": 12,
+        "tipoComponente": "Grafica",
+        "categoryid": 6,
+        "marca": "Zotac",
+        "descripcion": "GeForce RTX 3070 Twin Edge OC LHR",
+        "precio": 800,
+        "stock": 4,
+        "imgUrl": "https://www.bhphotovideo.com/images/images500x500/zotac_zt_a30700h_10plhr_geforce_rtx_3070_twin_1640868332_1680262.jpg"
     }
 ]

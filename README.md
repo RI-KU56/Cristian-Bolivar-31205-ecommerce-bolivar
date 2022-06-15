@@ -1,3 +1,15 @@
+# Primera Entrega del Proyecto Final
+Funcionalidad del proyecto: 
+
+![](./EcomerceBolivar-15-05-30-06.gif){width='600px' height='325px'}
+
+Para la primera entrega del proyecto final se compone de los siguientes puntos:
+**1)** En /src/App.js se incluye la información de Router.
+**2)** En src/components/NavBar.jsx se incluyen los Links para el menú de navegación a traves de una lista despegable.
+**3)** Para el manejo de categorías se agrego al json el elemento categoryid en cada producto, las categorías de los productos van desde la 1 hasta la 6 y la lógica toma lugar en src/components/ItemListContainer.jsx. En ItemList.jsx se obtiene la variable con "const {categoryid}=useParams()" donde la lógica de categoryid esta seteada junto con filtrar si corresponde o simplemente mostrar todos los items.
+**4)** Para procesar los items/1 a items/6 se hace uso de un arreglo, en ItemDetailContainer.jsx se obtiene el itemid "const {itemid}=useParams()", después se obtiene el array con los productos que nos interesa a nosotros:
+"setProducto(response[itemid-1])" es necesario la resta por el hecho que los arreglos inician en cero, después para mostrar el producto llamamos a ItemDetail.jsx con "ItemDetail  jsonpack={producto}"
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

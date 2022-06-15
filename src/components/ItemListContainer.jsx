@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom';
 import ItemList from './ItemList';
 import jsonpack from './productos.json'
 
-function ItemListContainer() {
+function ItemListContainer({ name }) {
+    const {categoryid} = useParams()
 
+    const[cat, setCat] = useState(categoryid)
     const[item, setItems] = useState([]);
     const call = new Promise((resolve,reject) => {
         setTimeout(()=>{
@@ -14,6 +17,8 @@ function ItemListContainer() {
     call.then(response => {
         setItems(response)
     })
+
+    console.log(cat);
 
     return (
         <>

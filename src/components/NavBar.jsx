@@ -9,7 +9,7 @@ function NavBar() {
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <Link to="/">
+          <Link to={`/`}>
             <img src={logoNav} width='50' alt='Logo navbar'/>
           </Link>
           <span className="navbar-text px-4 glitch">
@@ -29,19 +29,22 @@ function NavBar() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav mx-auto">
               <li className="nav-item header__link">
-                <Link className="nav-link" to='/'>
+                <Link className="nav-link" to={`/categories`}>
                   Inicio
                 </Link>
               </li>
-              <li className="nav-item header__link">
-                <Link className="nav-link" to='/'>
-                  Productos
+              <li className="nav-item dropdown">
+                <Link className="nav-link dropdown-toggle" to='/' id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Categorias
                 </Link>
-              </li>
-              <li className="nav-item header__link">
-                <Link className="nav-link" to='/'>
-                  Nosotros
-                </Link>
+                <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                  <li><Link className="nav-link dropdown-item" to={`/categories/1`}>Memoria RAM</Link></li>
+                  <li><Link className="nav-link dropdown-item" to={`/categories/2`}>Chasis ATX</Link></li>
+                  <li><Link className="nav-link dropdown-item" to={`/categories/3`}>Placa Madre</Link></li>
+                  <li><Link className="nav-link dropdown-item" to={`/categories/4`}>Mouse</Link></li>
+                  <li><Link className="nav-link dropdown-item" to={`/categories/5`}>Disipador</Link></li>
+                  <li><Link className="nav-link dropdown-item" to={`/categories/6`}>Graficas</Link></li>
+                </ul>
               </li>
               <li className="nav-item header__link">
                 <Link className="nav-link" to='/'>
