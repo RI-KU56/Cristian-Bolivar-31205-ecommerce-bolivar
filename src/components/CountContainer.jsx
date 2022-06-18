@@ -17,17 +17,12 @@ function CountContainer({ initial, stock, product_name }) {
     setCount(initial)
   }
 
-  const onAdd = () => {
-    alert(`Agregaste ${count} al carrito`);
-  };
-
   return (
     <>
       <ItemCount
         min={restar}
         max={sumar}
         reset={reset}
-        onAdd={onAdd}
         count={count}
         product_name={product_name}
       />

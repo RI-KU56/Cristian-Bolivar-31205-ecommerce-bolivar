@@ -1,12 +1,13 @@
 import React from "react";
+import { ItemDetailButton } from "./ItemDetail";
 
 
-function ItemCount({min,max,reset,onAdd,count,stock,product_name}) {
-  console.log(count);
+function ItemCount({min,max,reset,count,stock,product_name}) {
+  console.log("En item count:" + count);
     return (
       <>
         <div className="btn-group" role="group" aria-label="Basic example">
-          <table className="table-sm">
+          <table className="table-sm mx-auto">
             <thead>
               <tr>
                 <th></th>
@@ -30,10 +31,8 @@ function ItemCount({min,max,reset,onAdd,count,stock,product_name}) {
               </tr>
               <tr>
                 <td> </td>
-                <td>
-                  <button type="button" className='btn-secondary' disabled={count === 0} onClick={() => onAdd(count)}>
-                    Agregar al carrito
-                  </button>
+                <td align="center">
+                  <ItemDetailButton contador={count} />
                 </td>
                 <td> </td>
               </tr>

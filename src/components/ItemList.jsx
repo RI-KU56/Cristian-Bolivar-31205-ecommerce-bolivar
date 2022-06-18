@@ -30,7 +30,7 @@ function ItemList({ items }) {
 
     return (
         <>
-        <div style={{display:'flex', flexWrap:'wrap'}}>
+        <div style={{display:'flex', flexWrap:'wrap', justifyContent:'center'}}>
             {ListTemplate}
         </div>
         </>
