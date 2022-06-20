@@ -1,9 +1,15 @@
 import React from "react";
+import { useContext } from "react";
+import { useParams } from "react-router-dom";
 import { ItemDetailButton } from "./ItemDetail";
+import { CartContext } from "./CartContext";
 
 
 function ItemCount({min,max,reset,count,stock,product_name}) {
-  console.log("En item count:" + count);
+  const { itemid } = useParams()
+
+  const { addItem, cart } = useContext(CartContext)
+
     return (
       <>
         <div className="btn-group" role="group" aria-label="Basic example">
@@ -31,7 +37,7 @@ function ItemCount({min,max,reset,count,stock,product_name}) {
               </tr>
               <tr>
                 <td> </td>
-                <td align="center">
+                <td align="center" onClick={() => addItem({ itemid }, { count })}>
                   <ItemDetailButton contador={count} />
                 </td>
                 <td> </td>
