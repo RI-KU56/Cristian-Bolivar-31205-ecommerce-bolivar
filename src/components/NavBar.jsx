@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/NavBar.css';
 import logoNav from '../images/logo.png';
 import { Link } from "react-router-dom";
-import CartWidget from './CartWidget';
+import { Carrito } from './CartWidget';
 
 function NavBar() {
   return (
@@ -52,7 +52,7 @@ function NavBar() {
                 </Link>
               </li>
             </ul>
-              <CartWidget items={4}/>
+              <Carrito />
           </div>
         </div>
       </nav>

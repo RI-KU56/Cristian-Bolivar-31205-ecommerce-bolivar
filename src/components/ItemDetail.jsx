@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/ItemDetail.css';
-import  ItemCount from './CountContainer';
+import ItemCount from "./ItemCount";
 
 
 export const ItemDetailButton = ({ contador }) => {
@@ -48,8 +48,11 @@ function ItemDetail({ jsonpack }) {
             <h4>Precio: ${jsonpack.precio}</h4>
 
             <ItemCount
-                stock={jsonpack.stock}
-                initial={1}
+              productname={jsonpack.tipoComponente}
+              stock={jsonpack.stock}
+              initial={1}
+              productid={jsonpack.id}
+              itemprice={jsonpack.precio}
             />
 
             <button id="but1" style={{ display: "none" }} onClick={Terminar}>

@@ -4,7 +4,6 @@ import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './components/Cart';
-import { CartProvider } from './components/CartContext';
 
 
 function App() {
@@ -12,7 +11,7 @@ function App() {
   return (
     <>
     <div className="App">
-      <CartProvider>
+      
         <BrowserRouter>
           <NavBar />
           <Switch>
@@ -33,7 +32,7 @@ function App() {
             </Route>
           </Switch>
         </BrowserRouter>
-      </CartProvider>  
+
     </div>
     </>
   );

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {CartProvider} from './components/CartContext';
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -14,7 +15,9 @@ root.render(
   {/* <React.StrictMode>
     <App />
   </React.StrictMode> */}
-    <App />
+  <CartProvider>
+  <App />
+  </CartProvider>
   </>
 );
 
