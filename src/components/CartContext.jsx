@@ -1,100 +1,55 @@
-import React, { createContext, useState } from "react";
+import { createContext, useEffect, useState } from 'react';
 
-export const CartContext = createContext({});
+export  const MiContexto = createContext ();
 
-export const CartProvider = ({ children }) => {
-    const [carts, setCarts] = useState([]);
+export default function CartContext({children}) {
 
-    const additem = ({ productname }, { itemid }, { count }, { itemprice }) => {
-        setCarts([...carts, { itemid, productname, count, itemprice }]);
-    };
+    const [cart, setCart] = useState ([])
 
-    const removeitem = ({ itemid }) => {
-        console.log("inside removeitemid" + itemid);
-        setCarts(carts.filter((cart) => cart.itemid != itemid));
-    };
-
-    const cartlength = () => {
-        let sum, i;
-        sum = 0;
-        i = 0;
-        if (carts.length) {
-        while (i < carts.length) {
-            sum = carts[i].count + sum;
-            i++;
-        }
-        return sum;
+    //Metodo some: En el ItemDetail se va a encargar de detectar si el producto a agregar. Con este metodo se retorna un boleano
+    const isInCart = (id) =>{
+        return cart.findIndex(item => item.id === id)
+    }
+    
+    const agregarAlCarro = (item,cantidad) => {
+        console.log(item,cantidad);
+        //console.log(isInCart(item.id));
+        let posicion = isInCart(item.id)
+        console.log(posicion);
+        if (posicion == -1){
+        setCart([...cart,{...item,cantidad:cantidad}])
         } else {
-        return 0;
-        }
-    };
-
-    const clear = () => {
-        setCarts([]);
-    };
-
-    const total = () => {
-        let sum, i;
-        sum = 0;
-        i = 0;
-        if (carts.length) {
-        while (i < carts.length) {
-            sum = carts[i].count * carts[i].itemprice + sum;
-            i++;
-        }
-        return sum;
-        } else {
-        return 0;
-        }
-    };
-
-    const isInCart = ({ itemid }) => {
-        let i = 0;
-        if (!carts) return false;
-
-        if (carts.length) {
-        while (i < carts.length) {
-            if (carts[i].itemid === itemid) return true;
-
-            i++;
+        let auxCartCopy = [...cart]
+        auxCartCopy[posicion].cantidad = auxCartCopy[posicion].cantidad + cantidad
+        setCart(auxCartCopy)
         }
 
-        return false;
-        } else {
-        return false;
-        }
-    };
+    }
+    useEffect(() => {
+        console.log(cart);
+    }, [cart])
 
-    const isInCartIndex = ({ itemid }) => {
-        let i = 0;
+    const removeItem = (id) =>{
+        setCart (cart.filter(item => item.id !== id))
+    }
+    
+    const clearCart = () => {
+        setCart([])
+    }
+    //Metodo Reduce - Cartwidget - Retorna la cantidad total de unidades que figura el state cart
+    const cantidadProductos = () =>{
+        return cart.reduce((acumulador,item)=> acumulador += item.cantidad, 0)
+    }
 
-        if (carts.length) {
-        while (i < carts.length) {
-            if (carts[i].itemid === itemid) return i;
-
-            i++;
-        }
-
-        return false;
-        } else {
-        return false;
-        }
-    };
+    //Metodo Reduce - Cart - Retorna el precio total del produto
+    const PrecioTotalProductos = ()=> {
+        return cart.reduce ((acumulador,item)=> acumulador += item.cantidad * item.precio, 0)
+    }
 
     return (
-        <CartContext.Provider
-            value={{
-                carts,
-                additem,
-                removeitem,
-                cartlength,
-                clear,
-                total,
-                isInCartIndex,
-            }}>
-            {" "}
+        <MiContexto.Provider value={{cart, agregarAlCarro,removeItem,clearCart,cantidadProductos,PrecioTotalProductos}}>
             {children}
-        </CartContext.Provider>
+        </MiContexto.Provider>
     )
 }
 

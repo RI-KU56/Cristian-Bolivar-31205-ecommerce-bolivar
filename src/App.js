@@ -1,9 +1,10 @@
 import './App.css';
-import {BrowserRouter,Switch,Route} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './components/Cart';
+import CartContext from './components/CartContext';
 
 
 function App() {
@@ -11,32 +12,25 @@ function App() {
   return (
     <>
     <div className="App">
-      
+      <CartContext>
         <BrowserRouter>
           <NavBar />
-          <Switch>
-            <Route exact path="/">
-              <ItemListContainer name="Escoger Producto a Comprar" />
-            </Route>
-            <Route path="/categories/:categoryid">
-              <ItemListContainer />
-            </Route>
-            <Route path="/categories">
-              <ItemListContainer />
-            </Route>
-            <Route path="/item/:itemid">
-              <ItemDetailContainer />
-            </Route>
-            <Route path="/cart">
-              <Cart />
-            </Route>
-          </Switch>
-        </BrowserRouter>
 
+          <Routes>
+            {/*Todos los productos que se van a mostrar en el inicio */}
+            <Route path="/" element={<ItemListContainer />} />
+            <Route path="/inicio" element={<ItemListContainer />} />
+            {/*Todos los productos de una categoria puntual segun el id proporcionado*/}
+            <Route path="/categoria/:id" element={<ItemListContainer />} />
+            {/*Un producto puntual seg{un el id} */}
+            <Route path="/item/:id" element={<ItemDetailContainer />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </BrowserRouter>
+      </CartContext>
     </div>
     </>
   );
 }
 
 export default App;
-

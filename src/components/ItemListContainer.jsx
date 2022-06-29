@@ -1,52 +1,46 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import ItemList from './ItemList';
-import jsonpack from './productos.json'
+import {collection,getDocs,getFirestore,query,where} from 'firebase/firestore'
 
-function ItemListContainer({ name }) {
-    const {categoryid} = useParams()
+export default function ItemListContainer() {
+    const {id} = useParams ();
 
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-
-    const[cat, setCat] = useState(categoryid)
-    const[item, setItems] = useState([]);
+    const [cargandoProducto,setCargandoProducto] = useState (true)
+    const [errorProducto, setErrorProducto] = useState (false)
+    const [productos,setProductos] = useState ([]);
 
     useEffect(() => {
-        const call = new Promise((resolve,reject) => {
-            setTimeout(()=>{
-                resolve(jsonpack)
-            }, 2000)
+
+    const db = getFirestore()
+    const productosColeccion = collection(db,'items'); 
+
+    if (id){
+        const productoFiltrado = query(productosColeccion,where('categoria','==',id)) 
+
+        getDocs(productoFiltrado)
+        .then(promesaResuelta => {
+            setProductos(promesaResuelta.docs.map((doc) => ({...doc.data(),id:doc.id})));
         })
+        .catch((errorProducto)=>{
+            setErrorProducto(errorProducto)
+        })
+        .finally(()=>{setCargandoProducto(false)})
+
+    } else { getDocs(productosColeccion)
+        .then(promesaResuelta => {
+            setProductos(promesaResuelta.docs.map((doc) => ({...doc.data(),id:doc.id})));
+        })
+        .catch((errorProducto)=>{
+            setErrorProducto(errorProducto)
+        })
+        .finally(()=>{setCargandoProducto(false)})}
+
+    }, [id])
     
-        call.then(response => {
-            setItems(response)
-        })
-
-        call.catch((error) => {
-            setError(true)
-            console.log(error)
-        })
-
-        call.finally(() => {
-            setLoading(false)
-        })
-    
-        console.log(cat);
-    }, [])
-
     return (
         <>
-        <div>
-            {name}
-        
-            <div>{loading && "Loading..."}</div>
-            <div>{error && "Hubo un error en el pago"}</div>
-
-            <ItemList items={item} />
-        </div>
+        <ItemList productos = {productos} errorProducto={errorProducto} cargandoProducto={cargandoProducto} />
         </>
     )
 }
-
-export default ItemListContainer

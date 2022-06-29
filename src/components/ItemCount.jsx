@@ -1,104 +1,72 @@
 import React, { useState, useEffect, useContext } from "react";
-import { CartContext } from "./CartContext";
-import { Link, useParams } from "react-router-dom";
-import { ItemDetailButton } from "./ItemDetail";
+import { Link } from "react-router-dom";
+import { MiContexto } from './CartContext';
 
-const ItemCount = ({ productname, stock, initial, productid, itemprice }) => {
-  const [count, setCount] = useState(initial);
-  const { itemid } = useParams();
-  const { additem, additem2, carts, cartlength, isInCartIndex, removeitem } =
-    useContext(CartContext);
+export default function ItemCount({detail}) {
 
-  const add = () => {
-    if (count + 1 > stock) {
-      alert("Superaste la cantidad de items en stock");
+  const {agregarAlCarro} = useContext (MiContexto);
+  const [valor,setValor]= useState (1)
+    
+  const sumarProducto = (evento) => {
+    if (valor < detail.stock){
+      setValor(valor + 1);
+    } else {alert("No se pueden agregar más productos")}
+  }
+  
+  const restarProducto = () => {
+    if (valor > 1){ 
+      setValor (valor - 1);
     } else {
-      setCount(count + 1);
+      alert ("La cantidad mínima es 1")
     }
-  };
-
-  const sub = () => {
-    if (count === 0) alert("Debes agregar al menos un item al carrito");
-    else setCount(count - 1);
-  };
-
-  const reset = () => {
-    setCount(initial)
   }
-
+  
   const onAdd = () => {
-    alert("Tus productos se agregaron al carrito")
+    //console.log (`se agregaron ${valor} productos al carrito`)
+    setEventoBoton (false)
+    agregarAlCarro (detail,valor)
   }
 
-  console.log(
-    "ver contenido de carts",
-    carts.map((cart) => cart.productname)
-  );
+  //const reiniciar = () => {setValor (minimo)}
 
-  console.log("New cartlength function", cartlength());
+  const [eventoBoton,setEventoBoton] = useState (true)
 
   return (
     <>
+    { eventoBoton ? 
+      <>
       <div className="btn-group" role="group" aria-label="Basic example">
           <table className="table-sm mx-auto">
             <thead>
               <tr>
-                {/* <th colspan="3" align="center">{productname}</th> */}
+                {/* <th colspan="3" align="center">{productname}</th> */} 
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td align="center" colspan="1">
-                  <button type="button" className="btn btn-outline-danger" onClick={sub}>
-                    -
-                  </button>
+                <td align="center" colSpan="1">
+                  <button type="button" className='btn btn-outline-danger' onClick={() => {restarProducto()}}> - </button>
                 </td>
-                <td colspan="2" className="text-center" align="center">{count}</td>
-                <td align="center" colspan="1">
-                  <button type="button" className="btn btn-outline-success" onClick={add}>
-                    +
-                  </button>
+                <td colSpan="2" className="text-center" align="center">{valor}</td>
+                <td align="center" colSpan="1">
+                  <button type="button" className="btn btn-outline-success" onClick={(evento)=> {sumarProducto(evento)}}> + </button>
                 </td>
               </tr>
               <tr>
-                <td colspan="2" align="center" onClick={onAdd}>
-                  <button
-                    type="button" 
-                    className='btn btn-secondary'
-                    disabled={count === 0}
-                    id="but2"
-                    onClick={() =>
-                      additem(
-                        { productname },
-                        { itemid },
-                        { count },
-                        { itemprice }
-                      )
-                    }
-                  >
-                    Agregar a carrito
-                  </button>
-                </td>
-                <td colspan="2" align="center"> 
-                  <Link to={'/cart'}>
-                    <button type="button" className='btn btn-secondary'>
-                      Ir al Carrito
-                    </button>
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="4" align="center"> 
-                  <button type="button" className='btn btn-secondary' onClick={reset} disabled={count === 0}>
-                    Reset
-                  </button>
+                <td colSpan="2" align="center">
+                  <button type="button" className='btn btn-secondary' onClick={() => {onAdd()}}>Agregar a Carrito</button>
                 </td>
               </tr>
             </tbody>
           </table>
-        </div>
+      </div>
+      </>
+      :
+      <> 
+        <Link to = '/cart' > <button type="button" className='btn btn-info'>Terminar Compra</button> </Link>
+        <Link to ='/inicio'> <button type="button" className='btn btn-secondary'>Seguir Comprando</button> </Link>      
+      </>
+    }
     </>
-  );
-};
-
-export default ItemCount;
+  )
+}

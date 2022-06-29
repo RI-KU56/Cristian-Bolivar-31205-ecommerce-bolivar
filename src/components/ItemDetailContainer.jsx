@@ -1,57 +1,38 @@
 import React, {useState,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetail from "./ItemDetail";
-import productos from './productos.json'
+//import productos from './productos.json'
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
-
-function ItemDetailContainer({ items }) {
-  const[producto, setProducto] = useState([])
-  const{itemid} = useParams()
-
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+export default function ItemDetailContainer() {
+  const { id } = useParams();
+  const [cargandoDetail, setCargandoDetail] = useState(true);
+  const [errorDetail, setErrorDetail] = useState(false);
+  const [detail, setDetail] = useState({});
 
   useEffect(() => {
-    if (items) {
-      console.log("Item fue definido");
-    } else {
-      items = productos;
-      console.log("Malas noticias, no se definio el item");
-    }
+    const db = getFirestore();
 
-    const call = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(items)
-      }, 2000)
-    })
+    const productoRerencia = doc(db, "items", id);
 
-    call.then((response) => {
-      console.log(itemid)
-      console.log(response[itemid - 1])
-      setProducto(response[itemid - 1])
-    });
-
-    call.catch((error) => {
-      setError(true)
-      console.log(error)
-    })
-
-    call.finally(() => {
-      setLoading(false)
-    })
-
-  }, [])
+    getDoc(productoRerencia)
+      .then((promesaResuelta) => {
+        setDetail({ ...promesaResuelta.data(), id: promesaResuelta.id });
+      })
+      .catch((errorDetail) => {
+        setErrorDetail(errorDetail);
+      })
+      .finally(() => {
+        setCargandoDetail(false);
+      });
+  }, [id]);
 
   return (
-    <div>
-      <div>{loading && "Loading..."}</div>
-      <div>{error && "Hubo un error en el pago"}</div>
-      <ItemDetail jsonpack={producto} />
-    </div>
-  )
+    <>
+      <ItemDetail detail={detail} />
+
+      <div>{errorDetail && "No se pudo cargar los productos"}</div>
+      <div>{cargandoDetail && "Cargando los detalles del itemDetail.jsx"}</div>
+    </>
+  );
 }
-
-export default ItemDetailContainer
-
-
-

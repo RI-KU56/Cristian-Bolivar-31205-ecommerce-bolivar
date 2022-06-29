@@ -1,102 +1,53 @@
-import { Badge, Table, Button } from "react-bootstrap";
 import React, { useState, useEffect, useContext, createContext } from "react";
-import { CartContext } from "./CartContext";
+import { MiContexto } from './CartContext';
 import { Link } from "react-router-dom";
-import DelButton from "./DelButton";
+import './styles/Cart.css'
 
-
-const Cart = () => {
-  const { carts, cartlength, clear, total, removeitem } =
-    useContext(CartContext);
-  console.log("En carrito largo de carrito:" + cartlength());
-
-  if (cartlength() > 0) {
-    let copyarray = [];
-    let goodarray = [];
-    let ListTemplate;
-    let i = 0;
-
-    let itemidarray = [];
-
-    while (i < carts.length) {
-      copyarray[i] = carts[i];
-      itemidarray[i] = carts[i].itemid;
-      i++;
-    }
-
-    itemidarray = [...new Set(itemidarray)];
-    i = 0;
-    let id;
-    let j = 0;
-    let price;
-    let name;
-    while (i < itemidarray.length) {
-      let sum = 0;
-      for (j = 0; j < copyarray.length; j++) {
-        if (copyarray[j].itemid == itemidarray[i]) {
-          sum = copyarray[j].count + sum;
-          price = copyarray[j].itemprice;
-          name = copyarray[j].productname;
-        }
-      }
-
-      id = itemidarray[i];
-      goodarray.push({ id, name, sum, price });
-
-      i++;
-    }
-
-    ListTemplate = goodarray.map((element) => (
-      <tr key={element.id}>
-        <td>{element.name}</td>
-        <td>{element.sum}</td>
-        <td>{element.price}</td>
-        <td>
-          <DelButton itemid={id} />
-        </td>
-      </tr>
-    ));
-
-    return (
+export default function Cart() {
+  const {PrecioTotalProductos,cart,removeItem,clearCart} = useContext (MiContexto);
+  console.log(PrecioTotalProductos)
+  const carritoVacio = cart.length === 0
+  return (
+    <>
+    <h1 className="Titulo">Mi Carrito</h1>
+      {
+      carritoVacio ?
       <>
-        <table className="table table-info table-bordered border-primary">
-          <thead className="table-dark">
-            <tr>
-              <th>Item</th>
-              <th>Cantidad</th>
-              <th>Precio Unitario</th>
-              <th>Quitar Item</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ListTemplate}
-            <tr>
-              <td colspan="3">Total a Pagar:</td>
-              <td>{total()}</td>
-            </tr>
-            <tr>
-              <td colspan="4">
-                <Link to={'/'}>
-                  <button type="button" className='btn btn-secondary'>
-                    Terminar compra
-                  </button>
-                </Link>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div className="CarritoVacio">
+        <h2>Tu carrito está vacío</h2>
+        <Link to= '/inicio'><button type="button" class="btn btn-primary btn-lg">volver a los productos</button></Link>
+      </div>  
       </>
-    );
-  } else {
-    return (
-      <Badge variant="secondary">
-        El Carrito se encuentra vacio, por favor escoger items
-        <Link to={"/categories"}>
-          <button>Volver</button>
-        </Link>
-      </Badge>
-    );
-  }
-};
-
-export default Cart;
+      :
+      <> 
+        <div className = "ItemCarritoTitulo bg-secondary text-white">
+          <div>IMAGEN</div>
+          <div>MARCA</div>
+          <div>COMPONENTE</div>
+          <div>VALOR</div>
+          <div>CANTIDAD</div>
+          <div>SUBTOTAL</div>
+          <div>ELIMINAR</div>
+        </div>
+        {cart.map(producto => (
+          <div className = "ItemCarrito bg-secondary text-white" key={producto.id} >
+            <div><img className="ImagenItem" src={producto.imgUrl} alt ={producto.tipoComponente}/></div>
+            <div>{producto.marca}</div>
+            <div>{producto.tipoComponente}</div>
+            <div>$ {producto.precio}</div>
+            <div>x {producto.cantidad}</div>
+            <div>Subtotal: {producto.precio*producto.cantidad}</div>
+            <button type="button" className="btn btn-danger" onClick={()=>removeItem(producto.id)}>X</button>
+          </div>) )}
+        <div className="FueraDelMap">
+          <p className="Letra">Precio Final : {PrecioTotalProductos()} </p>
+          <button type="button" className="btn btn-danger" onClick={()=> clearCart()}>eliminar todo lo productos del carrito</button>
+        </div> 
+        <div className="FueraDelMap">
+          <button type="button" class="btn btn-success btn-lg" onClick={()=> clearCart()}>Terminar compra</button>
+        </div> 
+      </>
+      }
+    </>
+  )
+}

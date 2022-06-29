@@ -3,11 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {CartProvider} from './components/CartContext';
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { initializeApp } from "firebase/app";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyD9gkbpZrPkfmo_kHu5LUnPnRkCA1JWbRc",
+  authDomain: "ecommerce-bolivar.firebaseapp.com",
+  projectId: "ecommerce-bolivar",
+  storageBucket: "ecommerce-bolivar.appspot.com",
+  messagingSenderId: "53859794609",
+  appId: "1:53859794609:web:f57f54c1979ec194146c90"
+};
+
+initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,9 +25,7 @@ root.render(
   {/* <React.StrictMode>
     <App />
   </React.StrictMode> */}
-  <CartProvider>
   <App />
-  </CartProvider>
   </>
 );
 
