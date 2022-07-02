@@ -44,7 +44,9 @@ export default function Cart() {
           <button type="button" className="btn btn-danger" onClick={()=> clearCart()}>eliminar todo lo productos del carrito</button>
         </div> 
         <div className="FueraDelMap">
-          <button type="button" class="btn btn-success btn-lg" onClick={()=> clearCart()}>Terminar compra</button>
+          <Link to = '/checkout'>
+            <button type="button" class="btn btn-success btn-lg">Terminar compra</button>
+          </Link>
         </div> 
       </>
       }
