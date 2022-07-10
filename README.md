@@ -7,7 +7,7 @@ Funcionalidad del proyecto:
 Este es un proyecto que usa ReactJs para visualizar una tienda de componentes de computadores. La informcion de los productos, categorias y ordenes es almacenada en Google firestore y el projecto usa Reactjs junto con Bootstrap,Link,Firestore. El usurio puede navegar a traves de los items, puede filtrar por categorias y ver detalle de estos mismos, que luego se pueden agregar al carrito donde una vez finalizada la compra se procesara recibiendo un id de la orden de compra final para procesar.
 # Demo link
 
-https://ecommerce-bolivar.web.appnpm 
+https://ecommerce-bolivar.web.app 
 
 # Requerimientos de ejecucion
 **1)** Descargar el proyecto y descomprimir en una ubicacion conocida.
