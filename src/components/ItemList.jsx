@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import React from 'react'
 import Item from './Item';
 
 export default function ItemList({  productos,cargandoProducto,errorProducto }) {

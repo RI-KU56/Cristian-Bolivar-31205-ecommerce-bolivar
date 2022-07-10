@@ -14,16 +14,14 @@ export default function Checkout() {
     const[celular,setCelular] = useState();
 
     const db = getFirestore();
-
     const orderColeccion = collection (db,'pedidos');
 
     const [idCompras,setIdCompras] = useState('');
-
     const [compraRealizada,setCompraRealizada] = useState(false);
 
     function manejarClick() {
         const factura = {
-            comprador: {nombre,correo,celular},
+            comprador: {correo, nombre ,celular},
             productos : cart,
             precioTotalFinal : PrecioTotalProductos(),
             fecha: new Date()
@@ -48,15 +46,24 @@ export default function Checkout() {
         )
     }
 
-
     return (
         <>
-        <h1>Complete sus datos para terminar la compra</h1>
-    
-        <input onChange={(e)=> setNombre(e.target.value)} placeholder="ingrese su nombre"></input>
-        <input onChange={(e)=> setCorreo(e.target.value)} placeholder="ingrese su celular"></input>
-        <input onChange={(e)=> setCelular(e.target.value)} placeholder="ingrese su correo electronico"></input>
-        <button onClick={()=>manejarClick()}>Terminar Compra</button>
+            <h1>Complete sus datos para terminar la compra</h1>
+            <div className="mb-3">
+                <label for="full_name_id" class="control-label">Nombre</label>
+                <input onChange={(e)=> setNombre(e.target.value)} type="text" className="form-control" placeholder="Ingrese su nombre" required></input>
+            </div> 
+            <div className="mb-3">
+                <label for="exampleInputEmail1" className="form-label">Email address</label>
+                <input onChange={(e)=> setCorreo(e.target.value)} type="email" className="form-control" placeholder="Ingrese su correo electronico @dominio.com" required></input>
+            </div>
+            <div className="mb-3">
+                <label for="full_number_id" class="control-tel">Telefono</label>
+                <input onChange={(e)=> setCelular(e.target.value)} type="number" className="form-control" placeholder="Ingrese telefono 555 555555" required></input>
+            </div>
+            
+            <button className="btn btn-primary"  onClick={()=>manejarClick()}>Terminar Compra</button>
+
 
         {
             compraRealizada &&

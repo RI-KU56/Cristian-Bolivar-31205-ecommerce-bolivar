@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { MiContexto } from './CartContext';
 
@@ -22,12 +22,9 @@ export default function ItemCount({detail}) {
   }
   
   const onAdd = () => {
-    //console.log (`se agregaron ${valor} productos al carrito`)
     setEventoBoton (false)
     agregarAlCarro (detail,valor)
   }
-
-  //const reiniciar = () => {setValor (minimo)}
 
   const [eventoBoton,setEventoBoton] = useState (true)
 
@@ -41,13 +38,13 @@ export default function ItemCount({detail}) {
               <tr>
                 {/* <th colspan="3" align="center">{productname}</th> */} 
               </tr>
-            </thead>
-            <tbody>
-              <tr>
+                </thead>
+                <tbody>
+              <tr style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
                 <td align="center" colSpan="1">
                   <button type="button" className='btn btn-outline-danger' onClick={() => {restarProducto()}}> - </button>
                 </td>
-                <td colSpan="2" className="text-center" align="center">{valor}</td>
+                <td colSpan="2" align="center">{valor}</td>
                 <td align="center" colSpan="1">
                   <button type="button" className="btn btn-outline-success" onClick={(evento)=> {sumarProducto(evento)}}> + </button>
                 </td>
@@ -56,15 +53,17 @@ export default function ItemCount({detail}) {
                 <td colSpan="2" align="center">
                   <button type="button" className='btn btn-secondary' onClick={() => {onAdd()}}>Agregar a Carrito</button>
                 </td>
-              </tr>
+              </tr> 
             </tbody>
           </table>
       </div>
       </>
       :
       <> 
-        <Link to = '/cart' > <button type="button" className='btn btn-info'>Terminar Compra</button> </Link>
-        <Link to ='/inicio'> <button type="button" className='btn btn-secondary'>Seguir Comprando</button> </Link>      
+      <div style={{paddingRight: "2px", paddingTop: "2px"}}>
+        <Link to = '/cart' > <button type="button" className='btn btn-success' >Terminar Compra</button> </Link>
+        <Link to ='/inicio'> <button type="button" className='btn btn-secondary'>Seguir Comprando</button> </Link>
+      </div>      
       </>
     }
     </>

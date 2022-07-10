@@ -6,6 +6,7 @@ import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './components/Cart';
 import CartContext from './components/CartContext';
 import Checkout from './components/Checkout';
+//import Contacto from './components/Contacto';
 
 
 function App() {
@@ -16,7 +17,6 @@ function App() {
       <CartContext>
         <BrowserRouter>
           <NavBar />
-
           <Routes>
             {/*Todos los productos que se van a mostrar en el inicio */}
             <Route path="/" element={<ItemListContainer />} />
@@ -29,6 +29,8 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             {/* Ruta a verificacion de datos para finalizar compra */}
             <Route path="/checkout" element={<Checkout/>} />
+            {/* Ruta a contacto */}
+            {/* <Route path="/contacto" element={<Contacto />} /> */}
           </Routes>
         </BrowserRouter>
       </CartContext>

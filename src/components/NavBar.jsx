@@ -4,8 +4,6 @@ import logoNav from '../images/logo.png';
 import { Link } from "react-router-dom";
 import CartWidget from './CartWidget';
 import Categories from './Categories';
-import {useEffect, useState} from 'react';
-import {collection,getDocs,getFirestore,query,where} from 'firebase/firestore'
 
 function NavBar() {
 
@@ -39,9 +37,9 @@ function NavBar() {
               </li>
                 <Categories/>
               <li className="nav-item header__link">
-                <Link className="nav-link" to='/'>
+                {/* <Link className="nav-link" to='/contacto'>
                   Contacto
-                </Link>
+                </Link> */}
               </li>
             </ul>
               <CartWidget/>

@@ -1,7 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetail from "./ItemDetail";
-//import productos from './productos.json'
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 export default function ItemDetailContainer() {
@@ -12,7 +11,6 @@ export default function ItemDetailContainer() {
 
   useEffect(() => {
     const db = getFirestore();
-
     const productoRerencia = doc(db, "items", id);
 
     getDoc(productoRerencia)
